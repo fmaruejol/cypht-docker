@@ -1,9 +1,9 @@
 <?php
 $connected = false;
-$session_type = CYPHT_SESSION_TYPE;
-$auth_type = CYPHT_AUTH_TYPE;
-$user_config_type = CYPHT_USER_CONFIG_TYPE;
-$db_driver = CYPHT_DB_DRIVER;
+$session_type = 'CYPHT_SESSION_TYPE';
+$auth_type = 'CYPHT_AUTH_TYPE';
+$user_config_type = 'CYPHT_USER_CONFIG_TYPE';
+$db_driver = 'CYPHT_DB_DRIVER';
 while(!$connected) {
     try{
     $conn = new pdo('CYPHT_DB_DRIVER:host=CYPHT_DB_HOST;dbname=CYPHT_DB_NAME', 'CYPHT_DB_USER', 'CYPHT_DB_PASS');
