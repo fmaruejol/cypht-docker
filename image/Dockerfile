@@ -9,6 +9,7 @@ RUN set -e \
        supervisor \
        nginx \
        composer \
+       postgresql-dev \
        # GD
        freetype libpng libjpeg-turbo \
        php-session php-fileinfo  php-dom php-xml libxml2-dev php-xmlwriter php-tokenizer \
@@ -19,7 +20,7 @@ RUN set -e \
        # For GD (2fa module)
        libpng-dev libjpeg-turbo-dev freetype-dev \
     && docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/ \
-    && docker-php-ext-install gd pdo pdo_mysql \
+    && docker-php-ext-install gd pdo pdo_mysql pdo_pgsql \
     && mkdir ${CYPHT_DEST} \
     && cd ${CYPHT_DEST} \
     && mkdir /tmp/cypht-temp \
