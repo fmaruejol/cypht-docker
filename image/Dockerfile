@@ -1,6 +1,7 @@
 FROM php:7.4.33-fpm-alpine
 
-ENV CYPHT_DEST "/usr/local/share/cypht"
+ARG CYPHT_VERSION=1.4.1
+ARG CYPHT_DEST="/usr/local/share/cypht"
 
 WORKDIR "/var/www"
 
@@ -25,13 +26,13 @@ RUN set -e \
     && cd ${CYPHT_DEST} \
     && mkdir /tmp/cypht-temp \
     && cd /tmp/cypht-temp \
-    && wget https://github.com/cypht-org/cypht/archive/master.zip \
-    && unzip master.zip \
-    && cp cypht-master/hm3.sample.ini cypht-master/hm3.ini \
-    && find cypht-master -type d -print | xargs chmod 755 \
-    && find cypht-master -type f -print | xargs chmod 644 \
-    && chown -R root:root cypht-master \
-    && mv cypht-master/* ${CYPHT_DEST} \
+    && wget -O code.zip https://github.com/cypht-org/cypht/archive/refs/tags/v${CYPHT_VERSION}.zip \
+    && unzip code.zip \
+    && cp cypht-${CYPHT_VERSION}/hm3.sample.ini cypht-${CYPHT_VERSION}/hm3.ini \
+    && find cypht-${CYPHT_VERSION} -type d -print | xargs chmod 755 \
+    && find cypht-${CYPHT_VERSION} -type f -print | xargs chmod 644 \
+    && chown -R root:root cypht-${CYPHT_VERSION} \
+    && mv cypht-${CYPHT_VERSION}/* ${CYPHT_DEST} \
     && cd /tmp \
     && rm -rf cypht-temp \
     && apk del .build-deps \
